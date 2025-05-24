@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  web:
+    image: scanxtract 
+    build: .
+    container_name: docker-ocr-container
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env  # Load environment variables from .env file
