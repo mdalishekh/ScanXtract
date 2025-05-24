@@ -55,7 +55,10 @@ def delete_uploaded_ffile(file_id: str):
 
     try:
         shutil.rmtree(target_folder)
-        return {"message": f"File '{file_id}' deleted successfully"}
+        return JSONResponse({
+            "sucess" : True, 
+            "message": f"File '{file_id}' deleted successfully",
+            })
     # File ka naam bhi return karna hai , jo delete hua.
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error deleting folder: {str(e)}")
