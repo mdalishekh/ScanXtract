@@ -1,0 +1,9 @@
+FastAPI[all]
+uvicorn[standard]
+python-dotenv
+PyPDF2
+python-docx
+pytesseract
+pillow
+pdf2image
+opencv-python
