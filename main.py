@@ -16,7 +16,7 @@ os.makedirs(BASE_UPLOAD_DIR, exist_ok=True)
 # Setting logging levels
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s",
+    format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
 )
 
@@ -44,7 +44,34 @@ async def upload_pdf(file: UploadFile = File(...)):
                                 "text": pdf_text
                                 })
 
+@app.post("/ocr-api/image-to-text")
+async def upload_image(file: UploadFile = File(...)):
+    # Validate image mime type
+    logging.info("Uploading Your Image")
+    allowed_types = ["image/jpeg", "image/png"]
+    if file.content_type not in allowed_types:
+        raise HTTPException(status_code=400, detail="Only JPEG and PNG image files are allowed.")
 
+    # Generate a unique folder name using UUID
+    unique_folder = str(uuid.uuid4())
+    folder_path = os.path.join(BASE_UPLOAD_DIR, unique_folder)
+    os.makedirs(folder_path, exist_ok=True)
+    # Define full file path
+    file_path = os.path.join(folder_path, file.filename)  # type: ignore
+    # Save the uploaded image file
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    # Performing OCR on Image file
+    text_extractor = TextExtractor() 
+    image_text = " ".join(text_extractor.extract_text(file_path).split())
+    logging.info(f"File saved at: {unique_folder}")
+    return JSONResponse(content={
+        "fileId": unique_folder,
+        "text": image_text
+    })
+
+
+# Delete Specific file / folder 
 @app.delete("/delete-file/{file_id}")
 def delete_uploaded_ffile(file_id: str):
     UPLOAD_DIR = Path("uploads")
