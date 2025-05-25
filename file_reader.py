@@ -36,7 +36,6 @@ class FileExtractor:
             return txt_file.read().strip()
         
     def extract_image_text(self, file_path: str)-> str:
-        
         return ocr_image(file_path) # type: ignore
             
 
