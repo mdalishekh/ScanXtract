@@ -104,6 +104,7 @@ docker run -d --name <your-container-name> -p <your-port>:8000 mdalishekh/scanxt
 - 📊 Usage analytics  
 - 🚀 Enhanced speed and smarter extraction engine  
 ----
+### Example Code to call APIs using Python
 ```python
 
 # Example Code to call APIs using Python
