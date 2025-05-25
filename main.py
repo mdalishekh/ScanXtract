@@ -40,9 +40,10 @@ async def upload_pdf(file: UploadFile = File(...)):
     pdf_text = " ".join(text_extractor.extract_text(file_path).split())
     logging.info(pdf_text)
     logging.info(f"File saved at: {unique_folder}")
-    return JSONResponse(content={"fileId": unique_folder, 
-                                "text": pdf_text
-                                })
+    return JSONResponse(content={
+        "fileId": unique_folder, 
+        "text": pdf_text
+        })
 
 @app.post("/ocr-api/image-to-text")
 async def upload_image(file: UploadFile = File(...)):
@@ -88,4 +89,4 @@ def delete_uploaded_ffile(file_id: str):
             })
     # File ka naam bhi return karna hai , jo delete hua.
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error deleting folder: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error deleting file: {str(e)}")
