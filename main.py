@@ -80,12 +80,13 @@ def delete_uploaded_ffile(file_id: str):
 
     if not target_folder.exists() or not target_folder.is_dir():
         raise HTTPException(status_code=404, detail="File not found")
-
+    files = os.listdir(target_folder)
     try:
         shutil.rmtree(target_folder)
         return JSONResponse({
             "sucess" : True, 
-            "message": f"File '{file_id}' deleted successfully",
+            "message": f"File '{files[0]}' deleted successfully",
+            "fileId" : file_id
             })
     # File ka naam bhi return karna hai , jo delete hua.
     except Exception as e:
