@@ -1,13 +1,12 @@
 version: '3.8'
 
 services:
-  web:
-    image: scanxtract 
+  scanxtract-engine:
+    image: scanxtract
     build: .
-    container_name: docker-ocr-container
-    volumes:
-      - .:/app
+    container_name: scanxtract-engine
     ports:
       - "8000:8000"
-    env_file:
-      - .env  # Load environment variables from .env file
+    volumes:
+      - .:/app
+    restart: unless-stopped
