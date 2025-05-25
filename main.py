@@ -38,8 +38,9 @@ async def upload_pdf(file: UploadFile = File(...)):
         shutil.copyfileobj(file.file, buffer)
     text_extractor = TextExtractor() 
     pdf_text = " ".join(text_extractor.extract_text(file_path).split())
+    logging.info(f"File saved at: {unique_folder}\n")
     logging.info(pdf_text)
-    logging.info(f"File saved at: {unique_folder}")
+    logging.info("\n")
     return JSONResponse(content={
         "fileId": unique_folder, 
         "text": pdf_text
@@ -65,7 +66,9 @@ async def upload_image(file: UploadFile = File(...)):
     # Performing OCR on Image file
     text_extractor = TextExtractor() 
     image_text = " ".join(text_extractor.extract_text(file_path).split())
-    logging.info(f"File saved at: {unique_folder}")
+    logging.info(f"File saved at: {unique_folder}\n")
+    logging.info(image_text)
+    logging.info("\n")
     return JSONResponse(content={
         "fileId": unique_folder,
         "text": image_text
@@ -79,15 +82,15 @@ def delete_uploaded_ffile(file_id: str):
     target_folder = UPLOAD_DIR / file_id
 
     if not target_folder.exists() or not target_folder.is_dir():
+        logging.error(f"No such file found")
         raise HTTPException(status_code=404, detail="File not found")
     files = os.listdir(target_folder)
     try:
         shutil.rmtree(target_folder)
         return JSONResponse({
-            "sucess" : True, 
-            "message": f"File '{files[0]}' deleted successfully",
-            "fileId" : file_id
-            })
-    # File ka naam bhi return karna hai , jo delete hua.
+        "sucess" : True, 
+        "message": f"File '{files[0]}' deleted successfully",
+        "fileId" : file_id
+        })
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error deleting file: {str(e)}")
