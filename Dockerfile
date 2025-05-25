@@ -21,5 +21,5 @@ COPY . .
 # 6️ Expose port 8000 for Django
 EXPOSE 8000
 
-# 7️ Run Django server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# 7️ Run FastAPI server
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
