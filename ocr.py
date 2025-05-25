@@ -4,7 +4,7 @@ from pdf2image import convert_from_path
 
 
 # Tesseract path for Docker
-# pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
+pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 
 def ocr_image(image_path):
     try:
@@ -13,11 +13,8 @@ def ocr_image(image_path):
         if text:
             return text
         return None
-            # with open("text_file_path","w") as file:
-            #     file.write(text) 
     except Exception as error:
-        # logging.error(f"Error occurred while performing OCR: {str(error)}")
-        print("Error")
+        return error
         
 def ocr_pdf(pdf_path):
     # logging.info("PDF ocr performing")
