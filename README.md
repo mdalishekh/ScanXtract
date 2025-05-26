@@ -139,11 +139,11 @@ def delete_uploaded_file(file_id: str):
 ```python
 if __name__ == "__main__":
     # 1. Extract from PDF
-    pdf_result = extract_text_from_pdf("sample.pdf")
+    pdf_result = extract_text_from_pdf("your-path\sample.pdf")
     print("PDF Result:", pdf_result)
 
     # 2. Extract from Image
-    image_result = extract_text_from_image("sample.png")
+    image_result = extract_text_from_image("your-path\sample.png")
     print("Image Result:", image_result)
 
     # 3. Delete File using fileId (from any of above results)
