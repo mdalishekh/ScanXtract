@@ -17,7 +17,6 @@ def ocr_image(image_path):
         return error
         
 def ocr_pdf(pdf_path):
-    # logging.info("PDF ocr performing")
     text = ''
     images = convert_from_path(pdf_path)
     for img in images:
