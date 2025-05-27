@@ -82,7 +82,7 @@ def delete_uploaded_ffile(file_id: str):
     target_folder = UPLOAD_DIR / file_id
 
     if not target_folder.exists() or not target_folder.is_dir():
-        logging.error(f"No such file found")
+        logging.error(f"No such file found with file_id: {file_id}")
         raise HTTPException(status_code=404, detail="File not found")
     files = os.listdir(target_folder)
     try:
