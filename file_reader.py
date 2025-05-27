@@ -24,13 +24,11 @@ class FileExtractor:
 
     def extract_docx_text(self, file_path: str) -> str:
         """Extracts text from a DOCX file using python-docx."""
-        
         doc = docx.Document(file_path)
         return "".join([para.text for para in doc.paragraphs])
 
     def extract_txt_text(self, file_path: str) -> str:
         """Extracts text from a TXT file."""
-        
         with open(file_path, "r", encoding="utf-8") as txt_file:
             return txt_file.read().strip()
         
