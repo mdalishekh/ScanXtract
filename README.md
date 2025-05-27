@@ -1,4 +1,3 @@
-
 ## 🧾 ScanXtract - OCR Made Simple
 
 **ScanXtract** is a blazing-fast, lightweight OCR engine built with FastAPI and Docker. It extracts text from PDFs and images in seconds — no clutter, no bloat. Whether you're automating workflows or building tools, **ScanXtract** is your plug-and-play microservice. 🚀
