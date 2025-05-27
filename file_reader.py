@@ -17,7 +17,6 @@ class FileExtractor:
                     text += page.extract_text() + "\n"
                 if not text.strip(): #== "" or text.strip() == None:
                     return ocr_pdf(file_path) # type: ignore
-            
             return text.strip()
         except:
             return ocr_pdf(file_path) # type: ignore
