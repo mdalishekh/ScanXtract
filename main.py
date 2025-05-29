@@ -25,6 +25,7 @@ async def upload_pdf(file: UploadFile = File(...)):
     # Validate PDF mime type
     logging.info("Uploading Your PDF")
     if file.content_type != "application/pdf":
+        logging.error("Invalid file type uploaded.")
         raise HTTPException(status_code=400, detail="Only PDF files are allowed.")
     # Generate a unique folder name using UUID
     unique_folder = str(uuid.uuid4())
