@@ -7,6 +7,14 @@ from pdf2image import convert_from_path
 pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 
 def ocr_image(image_path):
+    """_summary_
+
+    Args:
+        image_path (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     try:
         with Image.open(image_path) as image:
             text = pytesseract.image_to_string(image)
