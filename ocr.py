@@ -6,14 +6,14 @@ from pdf2image import convert_from_path
 # Tesseract path for Docker
 pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 
-def ocr_image(image_path):
+def ocr_image(image_path: str)-> str | None:
     """_summary_
 
     Args:
-        image_path (_type_): _description_
+        image_path (str): Takes image path to perform OCR.
 
     Returns:
-        _type_: _description_
+        str | None: Returns extracted text from the image or None if no text is found.
     """
     try:
         with Image.open(image_path) as image:
