@@ -22,7 +22,7 @@ def ocr_image(image_path: str)-> str | None:
             return text
         return None
     except Exception as error:
-        return error
+        return error # type: ignore
         
 def ocr_pdf(pdf_path):
     text = ''
