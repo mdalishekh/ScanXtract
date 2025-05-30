@@ -15,7 +15,7 @@ class FileExtractor:
                 reader = PyPDF2.PdfReader(pdf_file)
                 for page in reader.pages:
                     text += page.extract_text() + "\n"
-                if not text.strip(): #== "" or text.strip() == None:
+                if not text.strip(): 
                     return ocr_pdf(file_path) # type: ignore
             return text.strip()
         except:
