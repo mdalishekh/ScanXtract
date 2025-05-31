@@ -20,6 +20,7 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S"
 )
 
+# REST API only for PDF files OCR
 @app.post("/ocr-api/pdf-to-text")
 async def upload_pdf(file: UploadFile = File(...)):
     # Validate PDF mime type
@@ -47,6 +48,7 @@ async def upload_pdf(file: UploadFile = File(...)):
         "text": pdf_text
         })
 
+# REST API only for Image files OCR
 @app.post("/ocr-api/image-to-text")
 async def upload_image(file: UploadFile = File(...)):
     # Validate image mime type
