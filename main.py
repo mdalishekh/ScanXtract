@@ -80,7 +80,7 @@ async def upload_image(file: UploadFile = File(...)):
 
 # Delete Specific file / folder 
 @app.delete("/delete-file/{file_id}")
-def delete_uploaded_ffile(file_id: str):
+def delete_uploaded_file(file_id: str):
     UPLOAD_DIR = Path("uploads")
     target_folder = UPLOAD_DIR / file_id
 
