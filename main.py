@@ -42,7 +42,6 @@ async def upload_pdf(file: UploadFile = File(...)):
     pdf_text = " ".join(text_extractor.extract_text(file_path).split())
     logging.info(f"File saved at: {unique_folder}\n")
     logging.info(pdf_text)
-    logging.info("\n")
     return JSONResponse(content={
         "fileId": unique_folder, 
         "text": pdf_text
@@ -71,7 +70,6 @@ async def upload_image(file: UploadFile = File(...)):
     image_text = " ".join(text_extractor.extract_text(file_path).split())
     logging.info(f"File saved at: {unique_folder}\n")
     logging.info(image_text)
-    logging.info("\n")
     return JSONResponse(content={
         "fileId": unique_folder,
         "text": image_text
