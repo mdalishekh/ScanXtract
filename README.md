@@ -31,16 +31,19 @@ It’s built to **save your time, effort, and system resources** — with minima
 You can get started instantly with Docker. No installation. No setup. Just plug and play.
 
 ### 📦 Pull the Image
+
 ```bash
 docker pull mdalishekh/scanxtract:v1.0
 ```
 
 ### 🚀 Run the Container
+
 ```bash
 docker run -d --name scanxtract-engine -p 8000:8000 mdalishekh/scanxtract:v1.0
 ```
 
 Or customize the container name and port:
+
 ```bash
 docker run -d --name <your-container-name> -p <your-port>:8000 mdalishekh/scanxtract:v1.0
 ```
@@ -50,12 +53,14 @@ docker run -d --name <your-container-name> -p <your-port>:8000 mdalishekh/scanxt
 ## ⚙️ Features / API Endpoints
 
 ### 📄 1. Extract Text from PDF  
+
 **`POST /ocr-api/pdf-to-text`**
 
 - 🔸 **Body Type:** `form-data`  
 - 🔑 **Key:** `file`    (PDF only)
 
 **✅ Response (JSON):**
+
 ```json
 {
   "fileId": "f0cfe9c4-0d65-4d69-82f8-275f44dee41d",
@@ -66,12 +71,14 @@ docker run -d --name <your-container-name> -p <your-port>:8000 mdalishekh/scanxt
 ---
 
 ### 🖼️ 2. Extract Text from Image  
+
 **`POST /ocr-api/image-to-text`**
 
 - 🔸 **Body Type:** `form-data`  
 - 🔑 **Key:** `file` (image formats like PNG, JPG, etc.)
 
 **✅ Response (JSON):**
+
 ```json
 {
   "fileId": "fe9c4-0d65-4d69-82f8-275f44dee41d",
@@ -82,11 +89,13 @@ docker run -d --name <your-container-name> -p <your-port>:8000 mdalishekh/scanxt
 ---
 
 ### 🗑️ 3. Delete Uploaded File  
+
 **`DELETE /delete-file/<your-file-id>`**
 
 - 🔸 **Path Param:** UUID (`fileId` returned by upload APIs)
 
 **✅ Response (JSON):**
+
 ```json
 {
   "success": true,
@@ -102,8 +111,11 @@ docker run -d --name <your-container-name> -p <your-port>:8000 mdalishekh/scanxt
 - 📝 PDF page selection  
 - 📊 Usage analytics  
 - 🚀 Enhanced speed and smarter extraction engine  
-----
+
+---
+
 ### Example Code to call APIs using Python
+
 ```python
 
 # Example Code to call APIs using Python
@@ -134,7 +146,9 @@ def delete_uploaded_file(file_id: str):
     return response.json()
     
 ```
-----
+
+---
+
 ```python
 if __name__ == "__main__":
     # 1. Extract from PDF
@@ -152,4 +166,5 @@ if __name__ == "__main__":
         print("Delete Result:", delete_result)
 
 ```
+
 #### Made by @mdalishekh 😊
