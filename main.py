@@ -74,8 +74,7 @@ async def upload_image(file: UploadFile = File(...)):
     # Return the unique file name and extracted text
     return JSONResponse(content={
         "fileId": unique_folder,
-        "text": image_text
-    })
+        "text": image_text})
 
 
 # Delete Specific file / folder 
