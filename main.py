@@ -45,8 +45,7 @@ async def upload_pdf(file: UploadFile = File(...)):
     # Return the unique file name and extracted text  
     return JSONResponse(content={
         "fileId": unique_folder, 
-        "text": pdf_text
-        })
+        "text": pdf_text})
 
 # REST API only for Image files OCR
 @app.post("/ocr-api/image-to-text")
@@ -92,7 +91,6 @@ def delete_uploaded_file(file_id: str):
         return JSONResponse({
         "sucess" : True, 
         "message": f"File '{files[0]}' deleted successfully",
-        "fileId" : file_id
-        })
+        "fileId" : file_id})
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error deleting file: {str(e)}")
