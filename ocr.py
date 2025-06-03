@@ -18,9 +18,9 @@ def ocr_image(image_path: str)-> str | None:
     try:
         with Image.open(image_path) as image:
             text = pytesseract.image_to_string(image)
-        if text:
-            return text
-        return None
+        if not text:
+            return None
+        return text
     except Exception as error:
         return error # type: ignore
         
