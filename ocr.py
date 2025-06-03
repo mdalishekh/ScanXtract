@@ -7,7 +7,7 @@ from pdf2image import convert_from_path
 pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 
 def ocr_image(image_path: str)-> str | None:
-    """_summary_
+    """Performs OCR with images only
 
     Args:
         image_path (str): Takes image path to perform OCR.
