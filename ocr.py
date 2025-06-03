@@ -25,6 +25,14 @@ def ocr_image(image_path: str)-> str | None:
         return error # type: ignore
         
 def ocr_pdf(pdf_path):
+    """Perform OCR with PDF only
+
+    Args:
+        pdf_path (str): Takes PDF path to perform OCR.
+
+    Returns:
+        str | None: Returns extracted text from the PDF or None if no text is found.
+    """
     text = ''
     images = convert_from_path(pdf_path)
     for img in images:
