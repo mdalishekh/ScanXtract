@@ -24,7 +24,7 @@ def ocr_image(image_path: str)-> str | None:
     except Exception as error:
         return error # type: ignore
         
-def ocr_pdf(pdf_path):
+def ocr_pdf(pdf_path: str)-> str | None:
     """Perform OCR with PDF only
 
     Args:
