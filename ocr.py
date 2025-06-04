@@ -33,10 +33,11 @@ def ocr_pdf(pdf_path: str)-> str | None:
     Returns:
         str | None: Returns extracted text from the PDF or None if no text is found.
     """
-    text = ''
+    text_list = []
     images = convert_from_path(pdf_path)
     for img in images:
-        text += pytesseract.image_to_string(img)
-    if not text:   
+        text_list.append(pytesseract.image_to_string(img))
+    texts = "".join(text_list)    
+    if not texts:   
         return None
-    return text
+    return texts
