@@ -62,6 +62,7 @@ async def upload_image(file: UploadFile = File(...)):
     os.makedirs(folder_path, exist_ok=True)
     # Define full file path
     file_path = os.path.join(folder_path, file.filename)  # type: ignore
+    
     # Save the uploaded image file
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
