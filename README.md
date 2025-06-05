@@ -45,7 +45,6 @@ It’s built to **save your time, effort, and system resources** — with minima
 
 You can get started instantly with Docker. No installation. No setup. Just plug and play.
 
-
 ### Pull the Image
 
 ```bash
@@ -148,7 +147,9 @@ def delete_uploaded_file(file_id: str):
     response = requests.delete(url)
     return response.json()
 ```
-----
+
+---
+
 ```python
 if __name__ == "__main__":
     # 1. Extract from PDF
