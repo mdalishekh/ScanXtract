@@ -4,7 +4,6 @@ from ocr import ocr_image, ocr_pdf
 
 class FileExtractor:
     """
-    Base class for file extraction.
     Contains methods for extracting text from various file formats.
     """
     def extract_pdf_text(self, file_path: str) -> str:
