@@ -2,3 +2,7 @@
 
 def memory_management():
     pass
+
+
+def cleanup_memory():
+    pass
