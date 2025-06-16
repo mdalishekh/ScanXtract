@@ -35,6 +35,7 @@ def ocr_pdf(pdf_path: str)-> str | None:
     """
     text_list = []
     images = convert_from_path(pdf_path)
+    # Adding all content in Python list to avoid memory consumption
     for img in images:
         text_list.append(pytesseract.image_to_string(img))
     texts = "".join(text_list)    
