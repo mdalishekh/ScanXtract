@@ -48,6 +48,7 @@ async def upload_pdf(file: UploadFile = File(...)):
         "fileId": unique_folder, 
         "text": pdf_text})
 
+
 # REST API only for Image files OCR
 @app.post("/ocr-api/image-to-text")
 async def upload_image(file: UploadFile = File(...)):
@@ -56,14 +57,12 @@ async def upload_image(file: UploadFile = File(...)):
     allowed_types = ["image/jpeg", "image/png"]
     if file.content_type not in allowed_types:
         raise HTTPException(status_code=400, detail="Only JPEG and PNG image files are allowed.")
-
     # Generate a unique folder name using UUID
     unique_folder = str(uuid.uuid4())
     folder_path = os.path.join(BASE_UPLOAD_DIR, unique_folder)
     os.makedirs(folder_path, exist_ok=True)
     # Define full file path
     file_path = os.path.join(folder_path, file.filename)  # type: ignore
-    
     # Save the uploaded image file
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
