@@ -7,6 +7,7 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import JSONResponse
 from file_reader import TextExtractor
 
+# Initiating FastAPI instance
 app = FastAPI()
 
 BASE_UPLOAD_DIR = "uploads"
