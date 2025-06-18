@@ -90,6 +90,7 @@ def delete_uploaded_file(file_id: str):
     files = os.listdir(target_folder)
     try:
         shutil.rmtree(target_folder)
+        logging.info(f"File deleted succesfully :- {files[0]}")
         return JSONResponse({
         "sucess" : True, 
         "message": f"File '{files[0]}' deleted successfully",
