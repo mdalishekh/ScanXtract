@@ -25,7 +25,7 @@ logging.basicConfig(
 @app.post("/ocr-api/pdf-to-text")
 async def upload_pdf(file: UploadFile = File(...)):
     # Validate PDF mime type
-    logging.info("Uploading Your PDF")
+    logging.info(f"Uploading Your PDF :- {file.filename}")
     if file.content_type != "application/pdf":
         logging.error("Invalid file type uploaded.")
         raise HTTPException(status_code=400, detail="Only PDF files are allowed.")
@@ -37,6 +37,7 @@ async def upload_pdf(file: UploadFile = File(...)):
     # Define full file path inside the unique folder
     file_path = os.path.join(folder_path, file.filename) # type: ignore
     # Save the uploaded file
+    
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     text_extractor = TextExtractor() 
