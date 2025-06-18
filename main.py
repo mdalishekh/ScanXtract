@@ -54,7 +54,7 @@ async def upload_pdf(file: UploadFile = File(...)):
 @app.post("/ocr-api/image-to-text")
 async def upload_image(file: UploadFile = File(...)):
     # Validate image mime type
-    logging.info("Uploading Your Image")
+    logging.info(f"Uploading Your Image :- {file.filename}")
     allowed_types = ["image/jpeg", "image/png"]
     if file.content_type not in allowed_types:
         raise HTTPException(status_code=400, detail="Only JPEG and PNG image files are allowed.")
