@@ -37,7 +37,6 @@ async def upload_pdf(file: UploadFile = File(...)):
     # Define full file path inside the unique folder
     file_path = os.path.join(folder_path, file.filename) # type: ignore
     # Save the uploaded file
-    
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     text_extractor = TextExtractor() 
