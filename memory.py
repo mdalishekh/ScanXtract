@@ -1,8 +1,9 @@
 # Memory efficiency is about to happen for this project
 
-def memory_management():
-    pass
+class MemoryCleaner:
+    def memory_management(self):
+        pass
 
 
-def cleanup_memory():
-    pass
+    def cleanup_memory(self):
+        pass
