@@ -114,7 +114,7 @@ docker run -d --name <your-container-name> -p <your-port>:8000 mdalishekh/scanxt
 ```json
 {
   "success": true,
-  "message": "File 'Scanned Air.pdf' deleted successfully",
+  "message": "File 'Scanned Air Pollution.pdf' deleted successfully",
   "fileId": "9b81b4ce-327f-4f95-9799-c41f50d0b519"
 }
 ```
