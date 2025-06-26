@@ -8,7 +8,6 @@ pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 
 def ocr_image(image_path: str)-> str | None:
     """Performs OCR with images only
-
     Args:
         image_path (str): Takes image path to perform OCR.
 
@@ -26,7 +25,6 @@ def ocr_image(image_path: str)-> str | None:
         
 def ocr_pdf(pdf_path: str)-> str | None:
     """Perform OCR with PDF only
-
     Args:
         pdf_path (str): Takes PDF path to perform OCR.
 
