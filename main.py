@@ -79,6 +79,24 @@ async def upload_image(file: UploadFile = File(...)):
         "text": image_text})
 
 
+@app.post("/ocr-api/extract-text")
+async def upload_scanned_file(file: UploadFile=File(...)) -> JSONResponse:
+    
+    """API for users can upload any kind of scanned files.
+       PDFs, JPEG, JPG, PNG
+
+    Returns:
+        json: All details of file along with extracted text.
+    """
+    
+    return JSONResponse(content={
+        "fileId" : "File Id here",
+        "fileName" : "File Name",
+        "fileType" : "application/pdf",
+        "text" : "Extracted text here"
+    })
+
+
 # Delete Specific file / folder 
 @app.delete("/delete-file/{file_id}")
 def delete_uploaded_file(file_id: str):
