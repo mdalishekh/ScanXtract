@@ -23,7 +23,7 @@ logging.basicConfig(
 
 # REST API only for PDF files OCR
 @app.post("/ocr-api/pdf-to-text")
-async def upload_pdf(file: UploadFile = File(...)):
+async def upload_pdf(file: UploadFile = File(...)) -> JSONResponse:
     # Validate PDF mime type
     logging.info(f"Uploading Your PDF :- {file.filename}")
     if file.content_type != "application/pdf":
@@ -51,7 +51,7 @@ async def upload_pdf(file: UploadFile = File(...)):
 
 # REST API only for Image files OCR
 @app.post("/ocr-api/image-to-text")
-async def upload_image(file: UploadFile = File(...)):
+async def upload_image(file: UploadFile = File(...)) -> JSONResponse:
     # Validate image mime type
     logging.info(f"Uploading Your Image :- {file.filename}")
     allowed_types = ["image/jpeg", "image/png"]
