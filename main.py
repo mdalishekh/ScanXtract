@@ -79,24 +79,7 @@ async def upload_image(file: UploadFile = File(...)) -> JSONResponse:
         "text": image_text})
 
 
-# @app.post("/ocr-api/extract-text")
-# async def upload_scanned_file(file: UploadFile=File(...)) -> JSONResponse:
-    
-#     """API for users can upload any kind of scanned files.
-#        PDFs, JPEG, JPG, PNG
-
-#     Returns:
-#         json: All details of file along with extracted text.
-#     """
-    
-#     return JSONResponse(content={
-#         "fileId" : "File Id here",
-#         "fileName" : "File Name",
-#         "fileType" : "application/pdf",
-#         "text" : "Extracted text here"
-#     })
-
-
+# REST API for Image files and PDF OCR
 @app.post("/ocr-api/extract-text")
 async def upload_scanned_file(file: UploadFile = File(...)) -> JSONResponse:
     """
