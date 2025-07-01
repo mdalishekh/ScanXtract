@@ -79,22 +79,74 @@ async def upload_image(file: UploadFile = File(...)) -> JSONResponse:
         "text": image_text})
 
 
-@app.post("/ocr-api/extract-text")
-async def upload_scanned_file(file: UploadFile=File(...)) -> JSONResponse:
+# @app.post("/ocr-api/extract-text")
+# async def upload_scanned_file(file: UploadFile=File(...)) -> JSONResponse:
     
-    """API for users can upload any kind of scanned files.
-       PDFs, JPEG, JPG, PNG
+#     """API for users can upload any kind of scanned files.
+#        PDFs, JPEG, JPG, PNG
+
+#     Returns:
+#         json: All details of file along with extracted text.
+#     """
+    
+#     return JSONResponse(content={
+#         "fileId" : "File Id here",
+#         "fileName" : "File Name",
+#         "fileType" : "application/pdf",
+#         "text" : "Extracted text here"
+#     })
+
+
+@app.post("/ocr-api/extract-text")
+async def upload_scanned_file(file: UploadFile = File(...)) -> JSONResponse:
+    """
+    Unified OCR API for scanned files.
+    Supports: PDF, JPEG, PNG
 
     Returns:
-        json: All details of file along with extracted text.
+        JSON: File ID, file name, type, and extracted text
     """
-    
+    logging.info(f"Uploading File: {file.filename}")
+
+    allowed_pdf = "application/pdf"
+    allowed_images = ["image/jpeg", "image/png", "image/jpg"]
+    all_allowed_types = [allowed_pdf] + allowed_images
+
+    # Validate file type
+    if file.content_type not in all_allowed_types:
+        raise HTTPException(status_code=400, detail="Only PDF, JPEG, or PNG files are allowed.")
+
+    # Generate a unique folder
+    unique_folder = str(uuid.uuid4())
+    folder_path = os.path.join(BASE_UPLOAD_DIR, unique_folder)
+    os.makedirs(folder_path, exist_ok=True)
+
+    # Save the uploaded file
+    file_path = os.path.join(folder_path, file.filename)  # type: ignore
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    # Determine file type for logging only
+    file_type = "PDF" if file.content_type == allowed_pdf else "Image"
+    logging.info(f"Processing as {file_type}")
+
+    # Extract text
+    text_extractor = TextExtractor()
+    extracted_text = text_extractor.extract_text(file_path)
+    clean_text = " ".join(extracted_text.split())
+
+    # Logging
+    logging.info(f"File saved at: {folder_path}")
+    logging.info(clean_text)
+
+    # Response
     return JSONResponse(content={
-        "fileId" : "File Id here",
-        "fileName" : "File Name",
-        "fileType" : "application/pdf",
-        "text" : "Extracted text here"
+        "fileId": unique_folder,
+        "fileName": file.filename,
+        "fileType": file.content_type,
+        "text": clean_text
     })
+
 
 
 # Delete Specific file / folder 
