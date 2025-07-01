@@ -112,16 +112,13 @@ async def upload_scanned_file(file: UploadFile = File(...)) -> JSONResponse:
     # Determine file type for logging only
     file_type = "PDF" if file.content_type == allowed_pdf else "Image"
     logging.info(f"Processing as {file_type}")
-
     # Extract text
     text_extractor = TextExtractor()
     extracted_text = text_extractor.extract_text(file_path)
     clean_text = " ".join(extracted_text.split())
-
     # Logging
     logging.info(f"File saved at: {folder_path}")
     logging.info(clean_text)
-
     # Response
     return JSONResponse(content={
         "fileId": unique_folder,
