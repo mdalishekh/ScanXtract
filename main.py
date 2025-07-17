@@ -89,7 +89,7 @@ async def upload_scanned_file(file: UploadFile = File(...)) -> JSONResponse:
     Returns:
         JSON: File ID, file name, type, and extracted text
     """
-    logging.info(f"Uploading File: {file.filename}")
+    # logging.info(f"Uploading File: {file.filename}")
 
     allowed_pdf = "application/pdf"
     allowed_images = ["image/jpeg", "image/png", "image/jpg"]
