@@ -130,21 +130,21 @@ async def upload_scanned_file(file: UploadFile = File(...)) -> JSONResponse:
 
 
 # Delete Specific file / folder 
-@app.delete("/delete-file/{file_id}")
-def delete_uploaded_file(file_id: str):
-    UPLOAD_DIR = Path("uploads")
-    target_folder = UPLOAD_DIR / file_id
+# @app.delete("/delete-file/{file_id}")
+# def delete_uploaded_file(file_id: str):
+#     UPLOAD_DIR = Path("uploads")
+#     target_folder = UPLOAD_DIR / file_id
 
-    if not target_folder.exists() or not target_folder.is_dir():
-        logging.error(f"No such file found with file_id: {file_id}")
-        raise HTTPException(status_code=404, detail="File not found")
-    files = os.listdir(target_folder)
-    try:
-        shutil.rmtree(target_folder)
-        logging.info(f"File deleted succesfully :- {files[0]}")
-        return JSONResponse({
-        "sucess" : True, 
-        "message": f"File '{files[0]}' deleted successfully",
-        "fileId" : file_id})
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error deleting file: {str(e)}")
+#     if not target_folder.exists() or not target_folder.is_dir():
+#         logging.error(f"No such file found with file_id: {file_id}")
+#         raise HTTPException(status_code=404, detail="File not found")
+#     files = os.listdir(target_folder)
+#     try:
+#         shutil.rmtree(target_folder)
+#         logging.info(f"File deleted succesfully :- {files[0]}")
+#         return JSONResponse({
+#         "sucess" : True, 
+#         "message": f"File '{files[0]}' deleted successfully",
+#         "fileId" : file_id})
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=f"Error deleting file: {str(e)}")
