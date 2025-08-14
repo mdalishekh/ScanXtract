@@ -128,6 +128,10 @@ async def upload_scanned_file(file: UploadFile = File(...)) -> JSONResponse:
     })
 
 
+"""
+Delete specific file not a folder.
+Feature to be added soon.
+"""
 
 # Delete Specific file / folder 
 @app.delete("/delete-file/{file_id}")
