@@ -2,6 +2,10 @@ import PyPDF2
 import docx
 from ocr import ocr_image, ocr_pdf
 
+"""
+No need of many type of file readers.
+"""
+
 class FileExtractor:
     """
     Contains methods for extracting text from various file formats.
