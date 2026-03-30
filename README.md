@@ -1,21 +1,20 @@
-
-# 🚀 ScanXtract v1.1 – Fast & Lightweight OCR API
+# 🚀 ScanXtract v1.2 – Fast & Lightweight OCR API
 
 **ScanXtract** is a blazing-fast, lightweight OCR engine built with FastAPI and Docker. It extracts text from PDFs and images in seconds — no clutter, no bloat. Whether you're automating workflows or building tools, **ScanXtract** is your plug-and-play microservice.
 
 ---
 
-## ✨ What's New in v1.1
+## ✨ What's New in v1.2
 
-- ⚡ **Faster Text Extraction**: Optimized processing pipeline for quicker results.
-- 🧠 **Reduced Memory Usage**: Enhanced efficiency, especially with large scanned PDFs.
+- 🧠 **Reduced Memory Usage**: Enhanced efficiency with generator-based text processing, especially with large scanned PDFs.
+- 📁 **Persistent File Storage**: Uploaded files now persist across container restarts using Docker Named Volumes.
 
 ---
 
-## 🔁 Refer to Our Previous Version
+## 🔁 Refer to Our Previous Versions
 
-For reference, you can check out our earlier version here:  
-🔗 [ScanXtract v1.0 Documentation](https://hackmd.io/@mdalishekh/B1k8hpCbll)
+- 🔗 [ScanXtract v1.1 Documentation](https://hackmd.io/@mdalishekh/Skur4cRzxe)
+- 🔗 [ScanXtract v1.0 Documentation](https://hackmd.io/@mdalishekh/B1k8hpCbll)
 
 ---
 
@@ -37,7 +36,7 @@ ScanXtract is perfect for:
 - Backend engineers needing quick OCR integration
 - Anyone tired of bulky, bloated OCR tools
 
-It’s built to **save your time, effort, and system resources** — with minimal setup.
+It's built to **save your time, effort, and system resources** — with minimal setup.
 
 ---
 
@@ -45,23 +44,49 @@ It’s built to **save your time, effort, and system resources** — with minima
 
 You can get started instantly with Docker. No installation. No setup. Just plug and play.
 
-### Pull the Image
+### Option 1 — Quick Run (Recommended for testing)
+
+#### Pull the Image
 
 ```bash
-docker pull mdalishekh/scanxtract:v1.1
+docker pull mdalishekh/scanxtract:latest   # or mdalishekh/scanxtract:v1.2
 ```
 
-### Run the Container
+#### Run the Container
 
 ```bash
-docker run -d --name scanxtract-engine -p 8000:8000 mdalishekh/scanxtract:v1.1
+docker run -d --name scanxtract-engine -p 8000:8000 mdalishekh/scanxtract:latest
 ```
 
 Or customize the container name and port:
 
 ```bash
-docker run -d --name <your-container-name> -p <your-port>:8000 mdalishekh/scanxtract:v1.1
+docker run -d --name <your-container-name> -p <your-port>:8000 mdalishekh/scanxtract:latest
 ```
+
+---
+
+### Option 2 — Docker Compose (Recommended for persistent storage)
+
+For production use or if you want uploaded files to persist across container restarts, use our `docker-compose.yml`.
+
+#### Get our docker-compose.yml file from here
+
+```bash
+https://github.com/mdalishekh/ScanXtract/blob/main/docker-compose.yml
+```
+
+#### Run with Compose
+
+```bash
+docker compose up -d
+```
+
+This will automatically:
+
+- Pull the latest image
+- Create a named Docker volume for persistent file storage
+- Start the container on port 8000
 
 ---
 
@@ -114,7 +139,7 @@ docker run -d --name <your-container-name> -p <your-port>:8000 mdalishekh/scanxt
 ```json
 {
   "success": true,
-  "message": "File 'Scanned Air Pollution.pdf' deleted successfully",
+  "message": "File 'Scanned-PDF Air Pollution.pdf' deleted successfully",
   "fileId": "9b81b4ce-327f-4f95-9799-c41f50d0b519"
 }
 ```
@@ -173,8 +198,8 @@ if __name__ == "__main__":
 
 - 📄 PDF page selection
 - 📊 Usage analytics
-- ⚙️ Enhanced speed and smarter extraction engine
 
 ---
+🔗 [Visit my Webpage @ https://mdalishekh.in](https://mdalishekh.in)
 
-#### Made by @mdalishekh 😊
+#### Made with ❤️ by @mdalishekh 😊

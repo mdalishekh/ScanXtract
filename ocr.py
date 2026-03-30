@@ -6,7 +6,7 @@ from pdf2image import convert_from_path
 # Tesseract path for Docker
 pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 
-def ocr_image(image_path: str)-> str | None:
+def ocr_image(image_path: str) -> str | None:
     """Performs OCR with images only
     Args:
         image_path (str): Takes image path to perform OCR.
@@ -21,9 +21,9 @@ def ocr_image(image_path: str)-> str | None:
             return None
         return text
     except Exception as error:
-        return error # type: ignore
+        return None
         
-def ocr_pdf(pdf_path: str)-> str | None:
+def ocr_pdf(pdf_path: str) -> str | None:
     """Perform OCR with PDF only
     Args:
         pdf_path (str): Takes PDF path to perform OCR.
@@ -31,12 +31,8 @@ def ocr_pdf(pdf_path: str)-> str | None:
     Returns:
         str | None: Returns extracted text from the PDF or None if no text is found.
     """
-    text_list = []
     images = convert_from_path(pdf_path)
-    # Adding all content in Python list to avoid memory consumption
-    for img in images:
-        text_list.append(pytesseract.image_to_string(img))
-    texts = "".join(text_list)    
-    if not texts:   
+    texts = "".join(pytesseract.image_to_string(img) for img in images)
+    if not texts:
         return None
     return texts
