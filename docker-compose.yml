@@ -1,12 +1,14 @@
-version: '3.8'
-
 services:
   scanxtract-engine:
-    image: scanxtract
+    image: scanxtract:latest
     build: .
     container_name: scanxtract-engine
     ports:
       - "8000:8000"
     volumes:
-      - .:/app
+      - uploads_data:/app/uploads
+      
     restart: unless-stopped
+
+volumes:
+  uploads_data:    
