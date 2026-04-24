@@ -1,4 +1,7 @@
+
 # 🚀 ScanXtract v1.2 – Fast & Lightweight OCR API
+
+> **License:** This project is open source and licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 **ScanXtract** is a blazing-fast, lightweight OCR engine built with FastAPI and Docker. It extracts text from PDFs and images in seconds — no clutter, no bloat. Whether you're automating workflows or building tools, **ScanXtract** is your plug-and-play microservice.
 
