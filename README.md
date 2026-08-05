@@ -203,6 +203,6 @@ if __name__ == "__main__":
 - 📊 Usage analytics
 
 ---
-🔗 [Visit my Webpage @ https://mdalishekh.in](https://mdalishekh.in)
+🔗 [Visit my Portfolio @ https://mdalishekh.in](https://mdalishekh.in)
 
 #### Made with ❤️ by @mdalishekh 😊
